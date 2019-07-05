@@ -65,9 +65,7 @@ public class new_remote_layout extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String msg = "Btn Clicked " + i;
                 Toast.makeText(context,msg,Toast.LENGTH_SHORT).show();
-                new_button_dialog dialog = new new_button_dialog();
-                if(getFragmentManager() != null)
-                    dialog.show(getFragmentManager(), "ADD ICON");
+
             }
         });
 

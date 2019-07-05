@@ -3,14 +3,14 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <com.google.android.material.textfield.TextInputEditText
+    <EditText
         android:id="@+id/dialog_button_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Button Name"
         android:gravity="center"/>
 
-    <com.google.android.material.button.MaterialButton
+    <Button
         android:id="@+id/icon_list_expand_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
