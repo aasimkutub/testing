@@ -8,6 +8,7 @@ public class remote {
     private String id = null;
     private int row = 0;
     private int col = 0;
+    private int frequency = 0;
     private ArrayList<button> button;
 
 

@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">remote_application</string>
+    <string name="remote_action_next">next</string>
+    <string name="remote_action_cancel">cancel</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="remote_action_read">read</string>
+    <string name="remote_action_save">save</string>
+    <string name="remote_action_back">back</string>
+    <string name="button_dialog_select_icon">Select Button Icon</string>
 </resources>
