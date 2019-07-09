@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.new_remote_layout">
+    tools:context=".Fragments.NewRemote"
+    android:layout_marginTop="@dimen/fragment_margin_top">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -17,25 +18,43 @@
         android:layout_alignParentTop="true">
 
         <Button
+            android:id="@+id/new_remote_cancel"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/remote_action_cancel"
             android:backgroundTint="@android:color/white"
-            android:background="?android:attr/selectableItemBackground"/>
+            android:background="?android:attr/selectableItemBackground"
+            android:textColor="@android:color/holo_blue_dark"/>
 
         <Button
+            android:id="@+id/new_remote_col"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/remote_action_col"
+            android:backgroundTint="@android:color/white"
+            android:background="?android:attr/selectableItemBackground"
+            android:textColor="@android:color/holo_blue_dark"/>
+
+        <Button
+            android:id="@+id/new_remote_next"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/remote_action_next"
             android:background="?android:attr/selectableItemBackground"
-            android:backgroundTint="@android:color/white"/>
+            android:backgroundTint="@android:color/white"
+            android:textColor="@android:color/holo_blue_dark"/>
 
     </LinearLayout>
 
     <GridView
         android:id="@+id/newRemoteLayoutGridView"
+        android:paddingLeft="@dimen/remote_margin"
+        android:paddingRight="@dimen/remote_margin"
+        android:paddingBottom="@dimen/remote_bottom_margin"
+        android:layout_margin="@dimen/remote_padding"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_alignParentRight="true"

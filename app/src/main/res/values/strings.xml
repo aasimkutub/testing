@@ -9,4 +9,8 @@
     <string name="remote_action_save">save</string>
     <string name="remote_action_back">back</string>
     <string name="button_dialog_select_icon">Select Button Icon</string>
+    <string name="add_remote_name_dialog">Remote Name</string>
+    <string name="Add_Remote">Remote Details</string>
+    <string name="dialog_button_details">Button Details</string>
+    <string name="remote_action_col">column\'s</string>
 </resources>

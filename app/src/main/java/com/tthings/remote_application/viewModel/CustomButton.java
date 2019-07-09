@@ -1,9 +1,12 @@
 package com.tthings.remote_application.viewModel;
 
-public class button {
+public class CustomButton {
 
     private String key = null;
     private String value = null;
+
+    public CustomButton() {
+    }
 
     public String getKey() {
         return key;

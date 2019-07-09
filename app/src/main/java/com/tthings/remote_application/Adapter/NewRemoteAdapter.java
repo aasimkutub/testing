@@ -1,4 +1,4 @@
-package com.tthings.remote_application.adapter;
+package com.tthings.remote_application.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,28 +7,30 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentManager;
 
-import com.tthings.remote_application.Alert_Dialog.new_button_dialog;
 import com.tthings.remote_application.R;
+import com.tthings.remote_application.viewModel.CustomButton;
 
-public class new_remote extends BaseAdapter {
+import java.util.ArrayList;
+
+public class NewRemoteAdapter extends BaseAdapter {
 
     private Context context;
-    FragmentManager fragmentManager;
+    private ArrayList<CustomButton> buttons;
 
-    public new_remote(Context context, FragmentManager fragmentManager) {
+
+    public NewRemoteAdapter(Context context, ArrayList<CustomButton> button) {
         this.context = context;
-        this.fragmentManager = fragmentManager;
+        this.buttons = button;
+
     }
 
     @Override
     public int getCount() {
-        return 12;
+        return buttons.size();
     }
 
     @Override
@@ -76,11 +78,11 @@ public class new_remote extends BaseAdapter {
             holder = (viewHolder) row.getTag();
         }
 
-        /*holder.button.setOnClickListener(new View.OnClickListener() {
+        /*holder.CustomButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(context,"Btn Clicked " + i ,Toast.LENGTH_SHORT).show();
-                new_button_dialog dialog = new new_button_dialog();
+                NewButtonDialog dialog = new NewButtonDialog();
                 dialog.show(((AppCompatActivity) context).getSupportFragmentManager(), "ADD ICON");
             }
         });

@@ -8,17 +8,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:text="@string/dialog_button_details"
+        android:text="@string/Add_Remote"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
     <EditText
         android:id="@+id/dialog_button_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Button Name"
+        android:hint="@string/add_remote_name_dialog"
         android:gravity="center"
         android:background="@android:color/white"
         android:padding="10dp"
+        android:layout_margin="15dp"
         android:maxLength="10"/>
 
     <Button
@@ -26,7 +27,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/button_dialog_select_icon"
-        android:textColor="@android:color/holo_orange_dark"/>
+        android:textColor="@android:color/holo_orange_dark"
+        android:visibility="gone"/>
 
     <ListView
         android:id="@+id/dialog_icon_list"

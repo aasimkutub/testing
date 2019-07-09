@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.remote_read">
+    tools:context=".Fragments.RemoteRead"
+    android:layout_marginTop="@dimen/fragment_margin_top">
 
 
     <LinearLayout
@@ -24,7 +25,8 @@
             android:layout_weight="1"
             android:text="@string/remote_action_back"
             android:backgroundTint="@android:color/white"
-            android:background="?android:attr/selectableItemBackground"/>
+            android:background="?android:attr/selectableItemBackground"
+            android:textColor="@android:color/holo_blue_dark"/>
 
         <Button
             android:id="@+id/remote_read_read"
@@ -33,7 +35,8 @@
             android:layout_weight="1"
             android:text="@string/remote_action_read"
             android:backgroundTint="@android:color/white"
-            android:background="?android:attr/selectableItemBackground"/>
+            android:background="?android:attr/selectableItemBackground"
+            android:textColor="@android:color/holo_blue_dark"/>
 
         <Button
             android:id="@+id/remote_read_save"
@@ -42,7 +45,8 @@
             android:layout_weight="1"
             android:text="@string/remote_action_save"
             android:backgroundTint="@android:color/white"
-            android:background="?android:attr/selectableItemBackground"/>
+            android:background="?android:attr/selectableItemBackground"
+            android:textColor="@android:color/holo_blue_dark"/>
     </LinearLayout>
 
     <GridView

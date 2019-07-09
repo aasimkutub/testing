@@ -1,42 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@android:color/transparent">
+    android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:text="@string/dialog_button_details"
+        android:padding="@dimen/fifteen"
+        android:text="Choose Column Value"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
-    <EditText
-        android:id="@+id/dialog_button_name"
+    <RadioGroup
+        android:id="@+id/dialog_numColumns"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Button Name"
         android:gravity="center"
-        android:background="@android:color/white"
-        android:padding="10dp"
-        android:maxLength="10"/>
+        android:padding="@dimen/fifteen">
 
-    <Button
-        android:id="@+id/icon_list_expand_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/button_dialog_select_icon"
-        android:textColor="@android:color/holo_orange_dark"/>
+        <RadioButton
+            android:id="@+id/three"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/three"
+            android:layout_weight="1"
+            android:text="3 Columns" />
 
-    <ListView
-        android:id="@+id/dialog_icon_list"
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:background="@android:color/transparent"
-        >
+        <RadioButton
+            android:id="@+id/four"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/three"
+            android:layout_weight="1"
+            android:text="4 Columns" />
 
-    </ListView>
+        <RadioButton
+            android:id="@+id/five"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/three"
+            android:layout_weight="1"
+            android:text="5 Columns" />
+    </RadioGroup>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -52,7 +57,7 @@
             />
 
         <Button
-            android:id="@+id/dialog_button_cancel"
+            android:id="@+id/col_dialog_button_cancel"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
@@ -61,7 +66,7 @@
             android:background="?android:attr/selectableItemBackground"
             android:textColor="@android:color/holo_blue_dark"/>
         <Button
-            android:id="@+id/dialog_button_save"
+            android:id="@+id/col_dialog_button_save"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -72,7 +77,4 @@
             />
 
     </LinearLayout>
-
-
-
 </LinearLayout>
