@@ -2,10 +2,12 @@ package com.tthings.remote_application.viewModel;
 
 public class CustomButton {
 
-    private String key = null;
-    private String value = null;
+    private String key;
+    private String value;
 
     public CustomButton() {
+        key = null;
+        value = null;
     }
 
     public String getKey() {

@@ -1,33 +1,58 @@
 package com.tthings.remote_application.Alert_Dialog;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
+import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
-import androidx.appcompat.app.AppCompatDialogFragment;
 import androidx.fragment.app.DialogFragment;
 
 import com.tthings.remote_application.R;
 
 public class NewButtonDialog extends DialogFragment {
 
+    public interface NewButtonListener {
+        void sendData(String name, int icon);
+    }
+
+    private NewButtonListener listener;
+
     private Button expand_btn;
     private ListView icon_list;
+    private EditText editText;
+    public String name;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            listener = (NewButtonListener) getTargetFragment();
+        } catch (ClassCastException e) {
+            Log.d("NewButtonDialog", "onAttach: "+e.getMessage());
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (name != null) {
+            editText.setText(name);
+            name = "";
+        }
+    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.new_button_dialog, container, false);
-
+        editText = view.findViewById(R.id.dialog_button_name);
         view.findViewById(R.id.dialog_button_cancel).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -38,7 +63,11 @@ public class NewButtonDialog extends DialogFragment {
         view.findViewById(R.id.dialog_button_save).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                listener.sendData(editText.getText().toString(), 0);
+                editText.setText("");
                 getDialog().dismiss();
+                name = "";
             }
         });
         icon_list = view.findViewById(R.id.dialog_icon_list);

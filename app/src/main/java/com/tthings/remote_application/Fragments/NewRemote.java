@@ -23,7 +23,7 @@ import com.tthings.remote_application.R;
 import com.tthings.remote_application.viewModel.CustomButton;
 import com.tthings.remote_application.viewModel.CustomRemote;
 
-public class NewRemote extends Fragment implements ColumnDialog.ColumnDialogListener {
+public class NewRemote extends Fragment implements ColumnDialog.ColumnDialogListener, NewButtonDialog.NewButtonListener {
 
 
 
@@ -32,11 +32,15 @@ public class NewRemote extends Fragment implements ColumnDialog.ColumnDialogList
     private GridView gv;
     private CustomRemote remote;
     private NewRemoteAdapter adapter;
+    private int btnNum;
+    private ColumnDialog dialog;
+    private NewButtonDialog btnDialog;
 
     public NewRemote(Context context, CustomRemote new_remote_obj) {
         this.context = context;
         this.remote = new_remote_obj;
         init(remote.getCol(),remote.getRow());
+        btnDialog = new NewButtonDialog();
     }
 
     private void init(int col, int row) {
@@ -44,6 +48,7 @@ public class NewRemote extends Fragment implements ColumnDialog.ColumnDialogList
         remote.getButton().clear();
         for (int i = 0; i < col*row; i++ )
             remote.getButton().add(new CustomButton());
+        dialog = new ColumnDialog(remote.getCol());
     }
 
     public NewRemote() {
@@ -59,13 +64,13 @@ public class NewRemote extends Fragment implements ColumnDialog.ColumnDialogList
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        v = inflater.inflate(R.layout.new_remote_layout_fragment, container, false);
+        v = inflater.inflate(R.layout.fragment_new_remote_layout, container, false);
         gv = v.findViewById(R.id.newRemoteLayoutGridView);
         next = v.findViewById(R.id.new_remote_next);
         cancel = v.findViewById(R.id.new_remote_cancel);
         column = v.findViewById(R.id.new_remote_col);
 
-        gv.setNumColumns(remote.getCol());
+        gv.setNumColumns(((0 == remote.getCol()) ? 3 : remote.getCol()));
         //gv.setStretchMode(GridView.NO_STRETCH);
         adapter = new NewRemoteAdapter(getActivity(), remote.getButton());
         gv.setAdapter(adapter);
@@ -74,9 +79,14 @@ public class NewRemote extends Fragment implements ColumnDialog.ColumnDialogList
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String msg = "Btn Clicked " + i;
+                btnNum = i;
                 Toast.makeText(context,msg,Toast.LENGTH_SHORT).show();
-                NewButtonDialog dialog = new NewButtonDialog();
-                dialog.show(getFragmentManager(), "open dialog");
+                if (remote.getButton().get(i).getKey() != null) {
+                    btnDialog.name = remote.getButton().get(i).getKey();
+                }
+                btnDialog.setTargetFragment(NewRemote.this,2);
+                btnDialog.show(getFragmentManager(), "open dialog");
+
 
             }
         });
@@ -84,7 +94,7 @@ public class NewRemote extends Fragment implements ColumnDialog.ColumnDialogList
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                RemoteRead remote_read = new RemoteRead();
+                RemoteRead remote_read = new RemoteRead(remote);
                 getFragmentManager().beginTransaction().replace(R.id.fragmentHolder, remote_read).addToBackStack("Fragment New Layout").commit();
             }
         });
@@ -93,9 +103,13 @@ public class NewRemote extends Fragment implements ColumnDialog.ColumnDialogList
             @Override
             public void onClick(View view) {
 
-                ColumnDialog dialog = new ColumnDialog(remote.getCol());
-                dialog.setTargetFragment(NewRemote.this,1);
+
+                dialog.setTargetFragment(NewRemote.this,2);
+
                 dialog.show(getFragmentManager(), "Read Column Value");
+
+
+
 
             }
         });
@@ -125,12 +139,21 @@ public class NewRemote extends Fragment implements ColumnDialog.ColumnDialogList
     public void sendValues(int id) {
 
         Log.d("ColumnDialogListener", "sendValues: I reached here successfully " + id);
-        remote.setCol(id);
-        init(remote.getCol(), remote.getRow());
+        if (remote.getCol() != id) {
+            remote.setCol(id);
+            init(remote.getCol(), remote.getRow());
+            adapter.notifyDataSetChanged();
+            gv.setNumColumns(remote.getCol());
+            gv.setAdapter(adapter);
+        }
+
+
+    }
+
+    @Override
+    public void sendData(String name, int icon) {
+        Log.d("NewButtonListener", "sendData: Data Received "+name+" *** "+ icon + " for the btn "+btnNum);
+        remote.getButton().get(btnNum).setKey(name);
         adapter.notifyDataSetChanged();
-        gv.setNumColumns(remote.getCol());
-        gv.setAdapter(adapter);
-
-
     }
 }

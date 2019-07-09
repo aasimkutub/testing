@@ -8,8 +8,6 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.cardview.widget.CardView;
-import androidx.fragment.app.FragmentManager;
 
 import com.tthings.remote_application.R;
 import com.tthings.remote_application.viewModel.CustomButton;
@@ -49,13 +47,11 @@ public class NewRemoteAdapter extends BaseAdapter {
 
         ImageView btnImg;
         TextView btnText;
-        CardView button;
 
         public viewHolder(View itemView) {
 
             btnImg = itemView.findViewById(R.id.btn_image);
             btnText = itemView.findViewById(R.id.btn_text);
-            button = itemView.findViewById(R.id.button);
         }
     }
 
@@ -72,10 +68,26 @@ public class NewRemoteAdapter extends BaseAdapter {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
             row = inflater.inflate(R.layout.remote_button, viewGroup, false);
             holder = new viewHolder(row);
+            if (buttons != null) {
+                if (buttons.get(i).getKey() == null) {
+
+                }
+                else {
+                    holder.btnText.setText(buttons.get(i).getKey());
+                }
+            }
             row.setTag(holder);
         }
         else {
             holder = (viewHolder) row.getTag();
+            if (buttons != null) {
+                if (buttons.get(i).getKey() == null) {
+
+                }
+                else {
+                    holder.btnText.setText(buttons.get(i).getKey());
+                }
+            }
         }
 
         /*holder.CustomButton.setOnClickListener(new View.OnClickListener() {
