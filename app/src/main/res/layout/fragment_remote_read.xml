@@ -4,11 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragments.RemoteRead"
-    android:layout_marginTop="@dimen/fragment_margin_top">
+    android:background="@drawable/bg">
 
-
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/fragment_margin_top">
     <LinearLayout
-        android:id="@+id/remote_read_btn_linearlayout"
+        android:id="@+id/remote_read_btn_linear_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -51,12 +54,21 @@
 
     <GridView
         android:id="@+id/remote_read_grid_view"
+        android:paddingLeft="@dimen/remote_margin"
+        android:paddingRight="@dimen/remote_margin"
+        android:paddingBottom="@dimen/remote_bottom_margin"
+        android:layout_marginLeft="@dimen/remote_padding"
+        android:layout_marginRight="@dimen/remote_padding"
+        android:layout_marginBottom="@dimen/remote_padding"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/remote_read_btn_linearlayout"
+        android:layout_below="@id/remote_read_btn_linear_layout"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true" />
+        android:layout_alignParentBottom="true"
+        android:listSelector="@android:color/transparent"/>
+
+    </RelativeLayout>
 </RelativeLayout>

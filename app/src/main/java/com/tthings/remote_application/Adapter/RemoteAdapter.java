@@ -1,6 +1,7 @@
 package com.tthings.remote_application.Adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,35 +9,38 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.cardview.widget.CardView;
 
 import com.tthings.remote_application.R;
 import com.tthings.remote_application.viewModel.CustomButton;
+import com.tthings.remote_application.viewModel.CustomRemote;
 
 import java.util.ArrayList;
 
-public class NewRemoteAdapter extends BaseAdapter {
+public class RemoteAdapter extends BaseAdapter {
 
-    private Context context;
+    CustomRemote remote;
     private ArrayList<CustomButton> buttons;
+    private Context context;
+    private int count;
+    public RemoteAdapter(CustomRemote remote, Context context) {
 
-
-    public NewRemoteAdapter(Context context, ArrayList<CustomButton> button) {
+        this.remote = remote;
         this.context = context;
-        this.buttons = button;
-
+        buttons = remote.getButton();
+        lastBtn();
     }
+
 
     @Override
     public int getCount() {
-        return buttons.size();
+        return count + 1;
     }
 
     @Override
     public Object getItem(int i) {
-        return i;
+        return null;
     }
-
-
 
     @Override
     public long getItemId(int i) {
@@ -47,15 +51,15 @@ public class NewRemoteAdapter extends BaseAdapter {
 
         ImageView btnImg;
         TextView btnText;
+        CardView button;
 
-        public viewHolder(View itemView) {
+        viewHolder(View itemView) {
 
             btnImg = itemView.findViewById(R.id.btn_image);
             btnText = itemView.findViewById(R.id.btn_text);
+            button = itemView.findViewById(R.id.button);
         }
     }
-
-
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
@@ -71,36 +75,46 @@ public class NewRemoteAdapter extends BaseAdapter {
             if (buttons != null) {
                 if (buttons.get(i).getKey() == null) {
                     holder.btnText.setText(null);
+                    holder.button.setBackgroundColor(Color.TRANSPARENT);
+                    holder.button.setVisibility(View.INVISIBLE);
+
+
                 }
                 else {
                     holder.btnText.setText(buttons.get(i).getKey());
+                    holder.button.setVisibility(View.VISIBLE);
+                    holder.button.setBackgroundColor(Color.parseColor("#DD4D1B"));
                 }
             }
             row.setTag(holder);
         }
         else {
-            holder = (viewHolder) row.getTag();
+            holder = (RemoteAdapter.viewHolder) row.getTag();
             if (buttons != null) {
                 if (buttons.get(i).getKey() == null) {
                     holder.btnText.setText(null);
+                    holder.button.setBackgroundColor(Color.TRANSPARENT);
+
+                    holder.button.setVisibility(View.INVISIBLE);
+
                 }
                 else {
                     holder.btnText.setText(buttons.get(i).getKey());
+                    holder.button.setVisibility(View.VISIBLE);
+                    holder.button.setBackgroundColor(Color.parseColor("#DD4D1B"));
                 }
             }
         }
 
-        /*holder.CustomButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(context,"Btn Clicked " + i ,Toast.LENGTH_SHORT).show();
-                NewButtonDialog dialog = new NewButtonDialog();
-                dialog.show(((AppCompatActivity) context).getSupportFragmentManager(), "ADD ICON");
-            }
-        });
-        */
         return row;
     }
 
+    private void lastBtn() {
 
+        for (int i = 0; i < buttons.size(); i++) {
+            if (buttons.get(i).getKey() != null) {
+                count = i;
+            }
+        }
+    }
 }

@@ -1,6 +1,7 @@
 package com.tthings.remote_application.Fragments;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -35,12 +36,14 @@ public class NewRemote extends Fragment implements ColumnDialog.ColumnDialogList
     private int btnNum;
     private ColumnDialog dialog;
     private NewButtonDialog btnDialog;
+    private boolean isNextClickable;
 
     public NewRemote(Context context, CustomRemote new_remote_obj) {
         this.context = context;
         this.remote = new_remote_obj;
         init(remote.getCol(),remote.getRow());
         btnDialog = new NewButtonDialog();
+        isNextClickable = false;
     }
 
     private void init(int col, int row) {
@@ -91,13 +94,17 @@ public class NewRemote extends Fragment implements ColumnDialog.ColumnDialogList
             }
         });
 
-        next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                RemoteRead remote_read = new RemoteRead(remote);
-                getFragmentManager().beginTransaction().replace(R.id.fragmentHolder, remote_read).addToBackStack("Fragment New Layout").commit();
-            }
-        });
+
+            next.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (isNextClickable) {
+                        RemoteRead remote_read = new RemoteRead(remote);
+                        getFragmentManager().beginTransaction().replace(R.id.fragmentHolder, remote_read).addToBackStack("Fragment New Layout").commit();
+                    }
+                }
+            });
+
 
         column.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,8 +114,6 @@ public class NewRemote extends Fragment implements ColumnDialog.ColumnDialogList
                 dialog.setTargetFragment(NewRemote.this,2);
 
                 dialog.show(getFragmentManager(), "Read Column Value");
-
-
 
 
             }
@@ -155,5 +160,40 @@ public class NewRemote extends Fragment implements ColumnDialog.ColumnDialogList
         Log.d("NewButtonListener", "sendData: Data Received "+name+" *** "+ icon + " for the btn "+btnNum);
         remote.getButton().get(btnNum).setKey(name);
         adapter.notifyDataSetChanged();
+        isNextClickable = isContainButton();
+        setNext(isNextClickable);
+    }
+
+
+    private boolean isContainButton() {
+
+        for (int i = 0; i < remote.getButton().size(); i++) {
+            if (remote.getButton().get(i).getKey() != null && !(remote.getButton().get(i).getKey().equals(""))) {
+                return true;
+            }
+        }
+
+        return false;
+
+    }
+
+    private void setNext(boolean isNextClickable) {
+
+        if (isNextClickable) {
+
+            next.setTextColor(Color.parseColor("#ff0099cc"));
+            next.setClickable(true);
+
+        }
+        else {
+            next.setTextColor(Color.parseColor("#8C9494"));
+            next.setClickable(false);
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+       setNext(isContainButton());
     }
 }

@@ -19,8 +19,9 @@
         android:text="New Remote"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/data_check"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.059" />
 
     <Button
         android:id="@+id/dialog"
@@ -35,6 +36,47 @@
         android:text="Remote 1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.536"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/button"
+        app:layout_constraintVertical_bias="0.034" />
+
+    <Button
+        android:id="@+id/data_check"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginLeft="44dp"
+        android:text="List"
+        app:layout_constraintBottom_toBottomOf="@+id/button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/button" />
+
+    <GridView
+        android:id="@+id/list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="220dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </GridView>
+
+    <Button
+        android:id="@+id/clear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="Clear"
+        app:layout_constraintEnd_toEndOf="@+id/data_check"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/data_check"
+        app:layout_constraintTop_toBottomOf="@+id/data_check" />
 </androidx.constraintlayout.widget.ConstraintLayout>

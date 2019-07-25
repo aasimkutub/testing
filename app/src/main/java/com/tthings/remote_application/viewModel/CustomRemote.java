@@ -10,6 +10,15 @@ public class CustomRemote {
     private int col;
     private int frequency = 0;
     private ArrayList<CustomButton> button;
+    private String IRB = null;
+
+    public String getIRB() {
+        return IRB;
+    }
+
+    public void setIRB(String IRB) {
+        this.IRB = IRB;
+    }
 
     public CustomRemote() {
         button = new ArrayList<>();

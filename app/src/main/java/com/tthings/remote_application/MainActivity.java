@@ -3,12 +3,32 @@ package com.tthings.remote_application;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.CursorAdapter;
+import android.widget.GridView;
+
+import com.google.gson.Gson;
+import com.tthings.remote_application.Adapter.ListRemoteAdapter;
+import com.tthings.remote_application.viewModel.CustomRemote;
+
+import java.io.BufferedReader;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+
+    ArrayList<CustomRemote> temp = new ArrayList<>();
+    CustomRemote remote = new CustomRemote();
+    Gson gson = new Gson();
+    GridView gv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +50,74 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(obj);
             }
         });
+
+
+
+
+        final ListRemoteAdapter adapter = new ListRemoteAdapter(temp, this);
+        gv = findViewById(R.id.list);
+        gv.setAdapter(adapter);
+        gv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+
+                String FILE_NAME = "remote_data.txt";
+                try {
+                    FileOutputStream fos = openFileOutput(FILE_NAME, Context.MODE_PRIVATE);
+                    fos.write(gson.toJson(temp.get(i)).getBytes());
+                    fos.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                Intent obj = new Intent(getApplicationContext(), Remote_display.class);
+                obj.putExtra("id", 01);
+                startActivity(obj);
+
+
+            }
+        });
+
+        findViewById(R.id.data_check).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    BufferedReader bReader = new BufferedReader(new InputStreamReader(openFileInput("remote.txt")));
+                    String line;
+                    StringBuffer text = new StringBuffer();
+                    temp.clear();
+                    while ((line = bReader.readLine()) != null) {
+                        Log.d("FileHandling", "saveRemote: "+line);
+                        remote = gson.fromJson(line, CustomRemote.class);
+                        if (!temp.contains(remote)) {
+                            temp.add(remote);
+                            adapter.notifyDataSetChanged();
+                        }
+
+
+                    }
+                    Log.d("Gson", "onClick: "+gson.toJson(temp));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        findViewById(R.id.clear).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    FileOutputStream fos = openFileOutput("remote.txt", Context.MODE_PRIVATE);
+                    fos.write("".getBytes());
+                    fos.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                temp.clear();
+                adapter.notifyDataSetChanged();
+            }
+        });
+
 
     }
 }
