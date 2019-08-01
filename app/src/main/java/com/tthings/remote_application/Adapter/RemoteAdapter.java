@@ -62,6 +62,17 @@ public class RemoteAdapter extends BaseAdapter {
     }
 
     @Override
+    public boolean isEnabled(int position) {
+
+
+        if (buttons.get(position).getKey() != null)
+            return true;
+
+
+        return false;
+    }
+
+    @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
 
 

@@ -11,6 +11,15 @@ public class CustomRemote {
     private int frequency = 0;
     private ArrayList<CustomButton> button;
     private String IRB = null;
+    private String category;
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
 
     public String getIRB() {
         return IRB;

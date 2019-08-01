@@ -4,10 +4,20 @@ public class CustomButton {
 
     private String key;
     private String value;
+    private String icon;
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
 
     public CustomButton() {
         key = null;
         value = null;
+        icon = null;
     }
 
     public String getKey() {
