@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.tthings.remote_application.Adapter.NewRemoteAdapter;
 import com.tthings.remote_application.Alert_Dialog.ColumnDialog;
 import com.tthings.remote_application.Alert_Dialog.NewButtonDialog;
+import com.tthings.remote_application.ConstValue;
 import com.tthings.remote_application.R;
 import com.tthings.remote_application.viewModel.CustomButton;
 import com.tthings.remote_application.viewModel.CustomRemote;
@@ -29,7 +30,7 @@ public class NewRemote extends Fragment implements ColumnDialog.ColumnDialogList
 
 
     private Context context;
-    private Button cancel, next, column;
+    private Button cancel, next, column, extraBtn;
     private GridView gv;
     private CustomRemote remote;
     private NewRemoteAdapter adapter;
@@ -72,6 +73,7 @@ public class NewRemote extends Fragment implements ColumnDialog.ColumnDialogList
         next = v.findViewById(R.id.new_remote_next);
         cancel = v.findViewById(R.id.new_remote_cancel);
         column = v.findViewById(R.id.new_remote_col);
+        extraBtn = v.findViewById(R.id.new_remote_extra_btn);
 
         gv.setNumColumns(((0 == remote.getCol()) ? 3 : remote.getCol()));
         //gv.setStretchMode(GridView.NO_STRETCH);
@@ -116,6 +118,13 @@ public class NewRemote extends Fragment implements ColumnDialog.ColumnDialogList
                 dialog.show(getFragmentManager(), "Read Column Value");
 
 
+            }
+        });
+
+        extraBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getActivity(),"add new btn in BottomSheet",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -196,4 +205,46 @@ public class NewRemote extends Fragment implements ColumnDialog.ColumnDialogList
         super.onResume();
        setNext(isContainButton());
     }
+
+
+    void checkCategory() {
+        //TODO code based on the category of the remote display the layout
+
+
+    }
+
+    void midButtonSwap() {
+        //TODO code to change the middle button based on the type of the remote
+
+
+    }
+
+    void getRemoteDataObject() {
+        //TODO return the object based on the type
+
+
+    }
+
+    void openDialog(String value) {
+        //TODO code to differentiate the normal button and the NUMPAD and EXTRA key word in the value
+        if (value == null) {
+            //TODO code to open the new button dialog
+
+
+        }
+
+        else if (value.equals(ConstValue.EXTRA_BUTTON)){
+            //TODO code to open the bottom sheet
+
+
+        }
+        else if (value.equals(ConstValue.NUMER_PAD)) {
+            //TODO code to open the numPad in bottom sheet
+
+
+        }
+
+    }
+
+
 }

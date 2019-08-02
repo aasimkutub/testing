@@ -13,4 +13,5 @@
     <string name="Add_Remote">Remote Details</string>
     <string name="dialog_button_details">Button Details</string>
     <string name="remote_action_col">column\'s</string>
+    <string name="ExtraButton">New Button</string>
 </resources>

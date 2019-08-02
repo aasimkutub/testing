@@ -216,4 +216,23 @@ public class RemoteRead extends Fragment implements SaveRemoteDialog.SaveRemoteD
 
         return null;
     }
+
+    void checkOnSaveIsAllButtonRead() {
+        //TODO check for all the buttons are read before saving and notify the user
+
+
+    }
+
+    void read() {
+        //TODO code to read the IR value for a Button
+
+
+    }
+
+    void checkButtonValue() {
+        //TODO code to check weather the button value is initialized to the read value or not
+
+
+    }
+
 }

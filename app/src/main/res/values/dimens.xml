@@ -7,4 +7,5 @@
     <dimen name="remote_margin">10dp</dimen>
     <dimen name="remote_padding">10dp</dimen>
     <dimen name="remote_bottom_margin">15dp</dimen>
+
 </resources>

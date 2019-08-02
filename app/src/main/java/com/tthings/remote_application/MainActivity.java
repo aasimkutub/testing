@@ -14,6 +14,7 @@ import android.widget.GridView;
 
 import com.google.gson.Gson;
 import com.tthings.remote_application.Adapter.ListRemoteAdapter;
+import com.tthings.remote_application.Alert_Dialog.NumPadDialog;
 import com.tthings.remote_application.viewModel.CustomRemote;
 
 import java.io.BufferedReader;
@@ -46,12 +47,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent obj = new Intent(getApplicationContext(), Remote_display.class);
-                obj.putExtra("id", 01);
+                obj.putExtra("id", 1);
                 startActivity(obj);
             }
         });
 
-
+        findViewById(R.id.categoryBtn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent obj = new Intent(getApplicationContext(), Remote_display.class);
+                obj.putExtra("id", 2);
+                startActivity(obj);
+            }
+        });
 
 
         final ListRemoteAdapter adapter = new ListRemoteAdapter(temp, this);
@@ -75,6 +83,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(obj);
 
 
+            }
+        });
+
+        findViewById(R.id.bottom_dialog).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NumPadDialog dialog = new NumPadDialog();
+                dialog.show(getSupportFragmentManager(),"bottom");
             }
         });
 
@@ -120,4 +136,23 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    void readFiles() {
+        //TODO code to read all the files in the respective folder
+
+
+    }
+
+    void openRemote() {
+        //TODO code to open a respective remote based on the user choose from the list fetched by the readFiles()
+
+
+    }
+
+    void newRemote() {
+        //TODO send Value to open the category fragment and invoke this method in the FAB
+
+
+    }
+
 }

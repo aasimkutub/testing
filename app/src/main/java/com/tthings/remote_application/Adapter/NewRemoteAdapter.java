@@ -90,15 +90,7 @@ public class NewRemoteAdapter extends BaseAdapter {
             }
         }
 
-        /*holder.CustomButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(context,"Btn Clicked " + i ,Toast.LENGTH_SHORT).show();
-                NewButtonDialog dialog = new NewButtonDialog();
-                dialog.show(((AppCompatActivity) context).getSupportFragmentManager(), "ADD ICON");
-            }
-        });
-        */
+
         return row;
     }
 

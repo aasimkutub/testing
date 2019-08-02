@@ -93,5 +93,22 @@ public class Remote extends Fragment {
         return view;
     }
 
+    void sendIRValue() {
+        //TODO code to send the IR value to the IR blaster
+
+
+    }
+
+    void ifExtra() {
+        //TODO open the bottom sheet
+
+
+    }
+
+    void ifNumPad() {
+        //TODO open the numPad sheet
+
+
+    }
 
 }
